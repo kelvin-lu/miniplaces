@@ -53,7 +53,7 @@ keep_dropout = tf.placeholder(tf.float32)
 train_phase = tf.placeholder(tf.bool)
 
 # Construct model
-model = imagenet_resnet_v2(resnet_size, 100, data_format=None)
+model = rn.imagenet_resnet_v2(resnet_size, 100, data_format=None)
 logits = model(x, keep_dropout, train_phase)
 
 # Define loss and optimizer
