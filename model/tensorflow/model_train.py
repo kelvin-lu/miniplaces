@@ -8,6 +8,7 @@ import resnet as rn
 batch_size = 32
 load_size = 256
 fine_size = 224
+resnet_size = 18
 c = 3
 data_mean = np.asarray([0.45834960097,0.44674252445,0.41352266842])
 
@@ -52,8 +53,8 @@ keep_dropout = tf.placeholder(tf.float32)
 train_phase = tf.placeholder(tf.bool)
 
 # Construct model
-model = rn.imagenet_resnet_v2(101, 100, data_format=None)
-logits = model(x, True)
+model = imagenet_resnet_v2(resnet_size, 100, data_format=None)
+logits = model(x, keep_dropout, train_phase)
 
 # Define loss and optimizer
 loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y, logits=logits))
